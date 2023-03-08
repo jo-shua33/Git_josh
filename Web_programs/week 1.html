@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<form id="myform">
+<label for="name">fullname</label>
+<input type="text" name="name" id="name" required >
+<br>
+<br>
+<label for="email">email address</label>
+<input type="email" name="email" id="email" required >
+<br>
+<br>
+<label for="phone">phone number</label>
+<input type="tel" name="phone" id="phone" required >     
+<br>
+<br>
+<label for="gender">gender</label>
+<select id="gender" name="gender">
+    <option value="">select your gender:</option>
+    <option value="">male</option>
+    <option value="">female</option>
+</select>
+<br>
+<br>
+<label for="password">password</label>
+<input type="password" name="password" id="password" required>
+</form>
+<br>
+<button type="submit">submit</button>
+
+       <div id="error"></div>
+       <div id="success"></div>
+
+<script type="text/javascript">
+
+const form = document.getElementById("myform")
+const errorDiv = document.getElementById("error")
+const successDiv = document.getElementById("success")
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const phone = document.getElementById("phone").value;
+const gender = document.getElementById("gender").value;
+const password = document.getElementById("password").value;
+
+//check if all field are filled
+if (!name || !email || !number || !gender || !password){
+    errorDiv.innerText ="please fill in all fields";
+    return;
+}
+
+//check email format
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if(!emailRegex.test(email)) {
+    errorDiv.innerText = "please enter a valid email address"
+    return;
+}
+
+//clear any previous error messages
+errorDiv.innerText = "";
+
+//display success message
+successDiv.innerText = "form submitted successfully"
+});
+</script>
+</body>
+</html>
